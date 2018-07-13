@@ -29,6 +29,21 @@ https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
 
 [DIAGRAM HERE OF HOW TO PREPARE THE SURFACE]
 
+The surface json file need to be structured in following manner
+```python
+[
+  [
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row 3d points in direction 1
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    #[[...],[...]....[...]].....
+  ], #top surface
+  [...], #bottom surface
+  [...], #rail 1 surface
+  [...], #rail 2 surface
+]
+```
+
 
 The prepared json file can be uploaded through http post request to the endpoint:
 https://studiobitonti.appspot.com/storage/upload
