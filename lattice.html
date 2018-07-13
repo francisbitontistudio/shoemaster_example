@@ -20,6 +20,7 @@
 <script src="visualizer.min.js"></script>
 <script>
 
+    //add a real-time 3d visualizer
     var app = new visualizer({
 
         background: 0xffffff,
@@ -29,30 +30,38 @@
     })
     app.run()
 
-
+    // api settings
     var setting = {
 
+        //input parameters for api call
         parameter: {
 
-            boxes: 'grid.json',
-            component: 'default.obj',
-            filename:'lattice',
+            boxes: 'grid_example.json',
+            component: 'unit_example.obj',
+            filename:'lattice_example.obj',
             EPSILON: 0.1
 
         },
 
+        //output geometry to be loaded later
         lattice : null,
 
+        //function to call the api
         call_API: function() {
 
+            // print input in browser console
             console.log('input', setting.parameter)
 
+            //using jQuery to serialize input parameter and make http get request to api
             $.get('https://studiobitonti.appspot.com/boxMorph', setting.parameter, function (data) {
 
+                // print output in browser console
                 console.log('output', data)
-
+                alert('Computing finished, start to load lattice')
+                // download the output obj lines
                 $.get('https://studiobitonti.appspot.com/storage/download', {name: data[0]}, function (obj) {
 
+                    // load obj lines into the visualizer
                     if (setting.lattice) app.scene.remove(setting.lattice)
                     setting.lattice = app.loadOBJCurves(obj, true)
                     setting.lattice.material.color.setRGB(0.2, 0.2, 0.2)
@@ -62,6 +71,7 @@
 
             }).fail(function (err) {
 
+                // print error in the console if failed
                 console.log(err)
 
             })
@@ -69,7 +79,8 @@
 
     }
 
-    var UI =  app.gui.addFolder('Grid');
+    // setup gui for the visualizer
+    var UI =  app.gui.addFolder('Lattice');
     UI.open();
     UI.add(setting.parameter,'boxes')
     UI.add(setting.parameter,'component')

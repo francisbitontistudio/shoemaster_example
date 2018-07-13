@@ -20,6 +20,7 @@
 <script src="visualizer.min.js"></script>
 <script>
 
+    //add a real-time 3d visualizer
     var app = new visualizer({
 
         background: 0xffffff,
@@ -29,37 +30,44 @@
     })
     app.run()
 
-
+    // api settings
     var setting = {
 
+        //input parameters for api call
         parameter: {
 
             u:40,
             v:8,
             w:4,
-            surfaces: 'sole.json',
-            filename:'grid.json',
+            surfaces: 'sole_example.json',
+            filename:'grid_example.json',
             directOutput: true,
             unitize: false
 
         },
 
+        //output geometry to be loaded later
         grid : null,
 
+        //function to call the api
         call_API: function(){
 
+            // print input in browser console
             console.log('input',setting.parameter)
 
+            //using jQuery to serialize input parameter and make http get request to api
             $.get('https://studiobitonti.appspot.com/conformalGrid',setting.parameter,function (data) {
 
+                // print output in browser console
                 console.log('output',data)
-
+                // load json grid into the visualizer
                 if( setting.grid ) app.scene.remove(setting.grid)
                 setting.grid = app.loadGrid(data.grid,true)
                 setting.grid.material.color.setRGB(0.5,0.5,0.5)
 
             }).fail(function (err) {
 
+                // print error in the console if failed
                 console.log(err)
 
             })
@@ -68,6 +76,7 @@
 
     }
 
+    // setup gui for the visualizer
     var UI =  app.gui.addFolder('Grid');
     UI.open();
     UI.add(setting.parameter,'surfaces').listen();
@@ -75,6 +84,7 @@
     UI.add(setting.parameter,'v').step(1);
     UI.add(setting.parameter,'w').step(1);
     UI.add(setting.parameter,'unitize')
+    UI.add(setting.parameter,'filename')
     UI.add(setting,'call_API')
 
 
