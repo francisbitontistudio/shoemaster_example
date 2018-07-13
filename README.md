@@ -98,7 +98,8 @@ Example output:
   <img src="imgs/lattice.JPG" width=8000>
 </p>
 
-OPTION. Blended lattice using point/vector/curve attractors
+### More to come: 
 
-### Step 5. Meshing
-Use /marchineCube function to generate 3D-printable stl files
+4. Blended lattice
+
+5. Meshing
