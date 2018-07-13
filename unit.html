@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lattice Unit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+
+            margin: 0;
+            overflow: hidden;
+
+        }
+    </style>
+
+</head>
+<body>
+
+<script src="visualizer.min.js"></script>
+<script>
+
+    var app = new visualizer({
+
+        background: 0xffffff,
+        defaultEnvironment: 0,
+        GUI:true
+
+    
+    });
+
+    app.camera.position.set(5,5,5)
+    app.run()
+
+    var box = new THREE.Mesh( new THREE.BoxBufferGeometry(1,1,1), new THREE.MeshPhongMaterial( {color: 0xefefef, transparent: true,opacity:0.2, depthWrite: false, depthTest: false} ) );
+    app.scene.add( box );
+
+    var setting = {
+
+        parameter:{
+
+            filename: 'default',
+            case: 5,
+            chamfer: 0.3,
+            centerChamfer: 0.0,
+            bendIn: 0.0,
+            cBendIn: 0.0,
+            connectPt:0.0,
+            keepDup: true
+
+        },
+
+        lattice_unit: null,
+
+        call_API: function () {
+
+            console.log('input',setting.parameter)
+
+            $.get('https://studiobitonti.appspot.com/latticeUnit',setting.parameter,function (data) {
+
+                console.log('output',data)
+
+                $.get('https://studiobitonti.appspot.com/storage/download',{name:data[0]},function (obj) {
+
+                    if(setting.lattice_unit) app.scene.remove(setting.lattice_unit)
+                    setting.lattice_unit = app.loadOBJCurves(obj,true)
+                    setting.lattice_unit.material.color.setRGB(0.3,0.3,0.3)
+                    setting.lattice_unit.position.set(-0.5,-0.5,-0.5)
+
+                })
+
+            })
+
+        }
+
+    }
+
+    var UI =  app.gui.addFolder('Lattice Unit')
+    UI.open()
+    UI.add(setting.parameter,'filename')
+    UI.add(setting.parameter,'case',0,7,1)
+    UI.add(setting.parameter,'chamfer',0,0.5)
+    UI.add(setting.parameter,'centerChamfer',0,0.5)
+    UI.add(setting.parameter,'bendIn',0,1).step(0.1)
+    UI.add(setting.parameter,'cBendIn',0,1)
+    UI.add(setting.parameter,'connectPt',0,1)
+    UI.add(setting,'call_API')
+
+
+
+</script>
+
+</body>
+</html>

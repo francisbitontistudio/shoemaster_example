@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Grid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+
+            margin: 0;
+            overflow: hidden;
+
+        }
+    </style>
+
+</head>
+<body>
+
+
+<script src="visualizer.min.js"></script>
+<script>
+
+    var app = new visualizer({
+
+        background: 0xffffff,
+        defaultEnvironment: 2,
+        GUI:true
+    
+    })
+    app.run()
+
+
+    var setting = {
+
+        parameter: {
+
+            u:40,
+            v:8,
+            w:4,
+            surfaces: 'sole.json',
+            filename:'grid.json',
+            directOutput: true,
+            unitize: false
+
+        },
+
+        grid : null,
+
+        call_API: function(){
+
+            console.log('input',setting.parameter)
+
+            $.get('https://studiobitonti.appspot.com/conformalGrid',setting.parameter,function (data) {
+
+                console.log('output',data)
+
+                if( setting.grid ) app.scene.remove(setting.grid)
+                setting.grid = app.loadGrid(data.grid,true)
+                setting.grid.material.color.setRGB(0.5,0.5,0.5)
+
+            }).fail(function (err) {
+
+                console.log(err)
+
+            })
+
+        }
+
+    }
+
+    var UI =  app.gui.addFolder('Grid');
+    UI.open();
+    UI.add(setting.parameter,'surfaces').listen();
+    UI.add(setting.parameter,'u').step(1);
+    UI.add(setting.parameter,'v').step(1);
+    UI.add(setting.parameter,'w').step(1);
+    UI.add(setting.parameter,'unitize')
+    UI.add(setting,'call_API')
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lattice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+
+            margin: 0;
+            overflow: hidden;
+
+        }
+    </style>
+
+</head>
+<body>
+
+
+<script src="visualizer.min.js"></script>
+<script>
+
+    var app = new visualizer({
+
+        background: 0xffffff,
+        defaultEnvironment: 2,
+        GUI:true
+    
+    })
+    app.run()
+
+
+    var setting = {
+
+        parameter: {
+
+            boxes: 'grid.json',
+            component: 'default.obj',
+            filename:'lattice',
+            EPSILON: 0.1
+
+        },
+
+        lattice : null,
+
+        call_API: function() {
+
+            console.log('input', setting.parameter)
+
+            $.get('https://studiobitonti.appspot.com/boxMorph', setting.parameter, function (data) {
+
+                console.log('output', data)
+
+                $.get('https://studiobitonti.appspot.com/storage/download', {name: data[0]}, function (obj) {
+
+                    if (setting.lattice) app.scene.remove(setting.lattice)
+                    setting.lattice = app.loadOBJCurves(obj, true)
+                    setting.lattice.material.color.setRGB(0.2, 0.2, 0.2)
+
+
+                })
+
+            }).fail(function (err) {
+
+                console.log(err)
+
+            })
+        }
+
+    }
+
+    var UI =  app.gui.addFolder('Grid');
+    UI.open();
+    UI.add(setting.parameter,'boxes')
+    UI.add(setting.parameter,'component')
+    UI.add(setting.parameter,'filename')
+    UI.add(setting,'call_API')
+
+
+</script>
+
+</body>
+</html>
