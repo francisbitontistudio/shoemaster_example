@@ -2,14 +2,18 @@
 
 The Conformal Lattice example requires few API calls to be accomplished.
 
-### 0. Upload/Download
+### 0. File Transfer
+
+Upload:
 
 Provided with API key(Not required now) , user files can be uplaoded to GENYSIS server through http post request to endpoint
 
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
-<a href='readme.md'>Upload</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/upload.html'>Uploader</a><br>
+
+Download:
 
 Any uploaded or generated files can be downloaded from endpoint
 
@@ -28,7 +32,7 @@ The prepared json file can be uploaded through http post request to the endpoint
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
-* <a href='readme.md'>Upload</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/upload.html'>Uploader</a><br>
 
 ### 2. Create Conformal Grid
 
