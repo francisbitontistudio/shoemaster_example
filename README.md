@@ -4,7 +4,7 @@ The Conformal Lattice example requires few API calls to be accomplished.
 
 ### 0. File Transfer
 
-Upload:
+<b>Upload:</b>
 
 Provided with API key(temporarily not required now) , user files can be uploaded to GENYSIS server through http post request to endpoint
 
@@ -15,7 +15,7 @@ Or using provided uploader example:
 
 Please note the uploading will automatically rewrite files with same names
 
-Download:
+<b>Download:</b>
 
 Any uploaded or generated files can be downloaded from endpoint
 
