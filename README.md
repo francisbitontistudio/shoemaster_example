@@ -11,7 +11,7 @@ The prepared json file can be uploaded through http post request to the endpoint
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
-* <a href='g3doc/installation.md'>Upload</a><br>
+* <a href='readme.md'>Upload</a><br>
 
 ### 2. Create Conformal Grid
 
@@ -43,7 +43,7 @@ Example output:
 ]
 ```
 
-* <a href='g3doc/installation.md'>live demo</a><br>
+* <a href='grid.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/grid.JPG" width=8000>
 </p>
@@ -70,7 +70,7 @@ Example output:
 ```python
 ["unit_example.obj"] # a list of successfully generated file saved on server
 ```
-* <a href='g3doc/installation.md'>live demo</a><br>
+* <a href='unit.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/unit.JPG" width=8000>
 </p>
@@ -93,7 +93,7 @@ Example output:
 ```python
 ["lattice_example.obj"] # a list of successfully generated file saved on server
 ```
-* <a href='g3doc/installation.md'>live demo</a><br>
+* <a href='lattice.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/lattice.JPG" width=8000>
 </p>
