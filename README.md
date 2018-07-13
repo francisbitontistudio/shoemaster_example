@@ -6,12 +6,14 @@ The Conformal Lattice example requires few API calls to be accomplished.
 
 Upload:
 
-Provided with API key(Not required now) , user files can be uplaoded to GENYSIS server through http post request to endpoint
+Provided with API key(temporarily not required now) , user files can be uploaded to GENYSIS server through http post request to endpoint
 
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
 * <a href='https://francisbitontistudio.github.io/shoemaster_example/upload.html'>Uploader</a><br>
+
+Please note the uploading will automatically rewrite files with same names
 
 Download:
 
