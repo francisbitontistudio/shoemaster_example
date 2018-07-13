@@ -43,7 +43,7 @@ Example output:
 ]
 ```
 
-* <a href='grid.html'>live demo</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/grid.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/grid.JPG" width=8000>
 </p>
@@ -70,7 +70,7 @@ Example output:
 ```python
 ["unit_example.obj"] # a list of successfully generated file saved on server
 ```
-* <a href='unit.html'>live demo</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/unit.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/unit.JPG" width=8000>
 </p>
@@ -93,7 +93,7 @@ Example output:
 ```python
 ["lattice_example.obj"] # a list of successfully generated file saved on server
 ```
-* <a href='lattice.html'>live demo</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/lattice.html'>live demo</a><br>
 <p align="center">
   <img src="imgs/lattice.JPG" width=8000>
 </p>
