@@ -2,6 +2,19 @@
 
 The Conformal Lattice example requires few API calls to be accomplished.
 
+### 0. Upload/Download
+
+Provided with API key(Not required now) , user files can be uplaoded to GENYSIS server through http post request to endpoint
+https://studiobitonti.appspot.com/storage/upload
+Or using provided uploader example:
+<a href='readme.md'>Upload</a><br>
+
+Any uploaded or generated files can be downloaded from endpoint
+https://studiobitonti.appspot.com/storage/download  with parameter {name:YOUR_FILE_NAME}
+
+example:
+https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
+
 ### 1. Export Surface Grid
 
 [DIAGRAM HERE OF HOW TO PREPARE THE SURFACE]
