@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+
+<!--create html form for uploading files-->
+<h2>Upload</h2>
+<form id="upload" action="https://studiobitonti.appspot.com/storage/upload">
+    <input id="file1" type="file" name="file1"><br>
+    <input id="overwite" type="checkbox" checked="checked">over-write file name<br>
+    <input type="submit" value="Upload"><br>
+    <div id="Response"></div>
+</form><br>
+
+<!--include jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    // use jQuery to access the data from html form with the id 'upload'
+    var upload = $( "#upload" );
+
+    // program the behaviour when submit button is clicked
+    upload.submit(function( event ) {
+
+        //prevent the page from refreshing
+        event.preventDefault();
+
+        // get the api end point
+        var apiEndPoint = upload.attr('action');
+
+
+        // overwrite the file name if the overwrite box is checked. otherwise, a unique time stamp will be appended to file name
+        var filename = $('#file1').val().split('\\').pop()
+
+        if($('#overwite').is(":checked") && filename){
+
+            apiEndPoint += '?filename=' + filename
+
+        }
+
+
+        // use jQuery to make ajax request to post files to api
+        $.ajax( {
+            url: apiEndPoint,
+            type: 'POST',
+            data: new FormData( this ),
+            processData: false,
+            contentType: false,
+            success: function (data) {
+
+                console.log(data)
+
+                // print the api response
+                $('#Response').text('file uploaded as:' + JSON.stringify(data));
+
+
+            },
+            error: function (error) {
+
+                // print the error message if failed
+                alert(error.statusText)
+
+            }
+        } );
+
+    });
+
+
+
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ The prepared json file can be uploaded through http post request to the endpoint
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
-* <a href='readme.md'>Upload</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/storage.html'>Upload</a><br>
 
 ### 2. Create Conformal Grid
 
