@@ -113,7 +113,7 @@ Example output:
 
 ### 3. Create Lattice Unit 
 
-Use http get with API endpoint: https://studiobitonti.appspot.com/conformalGrid to generate a parametrically described lattice unit
+Use http get with API endpoint: https://studiobitonti.appspot.com/latticeUnit to generate a parametrically described lattice unit
 
 Example input:
 ```python
