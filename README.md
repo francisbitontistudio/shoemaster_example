@@ -13,7 +13,6 @@ https://studiobitonti.appspot.com/storage/upload
 Or using provided uploader example:
 * <a href='https://francisbitontistudio.github.io/shoemaster_example/storage.html'>Uploader</a><br>
 
-Please note the uploading will automatically rewrite files with same names
 
 <b>Download:</b>
 
