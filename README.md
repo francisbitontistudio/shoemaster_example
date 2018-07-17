@@ -31,7 +31,7 @@ To create a conformed volume lattice, the 4 untrimmed envelope surfaces are need
   <img src="imgs/surface.JPG" width=800>
 </p>
 
-After surface prepared, a grid of points need to be exported from each surfaces and written into a single json file. These points are used to rebuild the surfaces on server.
+After surfaces prepared, a grid of points need to be exported from each surfaces and written into a single json file. These points will be used to rebuild same surfaces on server.
 <p align="center">
   <img src="imgs/surfaceGrid.png" width=500>
 </p>
@@ -75,7 +75,8 @@ Or using provided uploader example:
 
 ### 2. Create Conformal Grid
 
-Use the API endpoint: https://studiobitonti.appspot.com/conformalGrid to construct a list of box-shaped scaffold.
+The next step is rebuilding surfaces on server and use them to create a conformal volume grid.
+Use the http get to call API endpoint: https://studiobitonti.appspot.com/conformalGrid 
 
 Example input:
 ```python
@@ -94,9 +95,11 @@ Example output:
 ```python
 [
   [
-    [0,0.5,0.7],[0,1.2,2.3],[3.5,-0.2,0.7],[2.5,3.2,2.22],[5.25,6.12,1.12],[5.1,-12.2,3.3],[4.6,0.11,-8] # 3d coordinates for 8 corners of a box
+    # 3d coordinates for 8 corners of a box
+    [0,0.5,0.7],[0,1.2,2.3],[3.5,-0.2,0.7],[2.5,3.2,2.22],[5.25,6.12,1.12],[5.1,-12.2,3.3],[4.6,0.11,-8],[12,2.4,-3] 
   ],
   [
+    # 3d coordinates for 8 corners of a box
     [4.1,0.5,0.2],[6,1.42,1.3],[4.2,3.2,5.1],[2.3,3.1,5.52],[7.28,6.72,5.42],[5.4,11.2,5.3],[22.6,2.44,1.2]
   ],
   # [[...],[...]....[...]]...... list of boxes composing the conformal grid
@@ -110,7 +113,7 @@ Example output:
 
 ### 3. Create Lattice Unit 
 
-Use the API endpoint: https://studiobitonti.appspot.com/conformalGrid to generate a parametrically described lattice unit
+Use http get with API endpoint: https://studiobitonti.appspot.com/conformalGrid to generate a parametrically described lattice unit
 
 Example input:
 ```python
@@ -125,7 +128,7 @@ Example input:
   "filename": "unit_example.obj", # output file name to be saved on server
 }
 ```
-
+The output will be stored on server using specified file name 
 Example output:
 ```python
 ["unit_example.obj"] # a list of successfully generated file saved on server
@@ -157,6 +160,9 @@ Example output:
 <p align="center">
   <img src="imgs/lattice.JPG" width=1000>
 </p>
+
+The output can be downloaded here:
+https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
 
 ### More to come: 
 
