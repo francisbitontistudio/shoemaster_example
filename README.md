@@ -27,20 +27,43 @@ https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
 
 ### 1. Export Surface Grid
 
-[DIAGRAM HERE OF HOW TO PREPARE THE SURFACE]
+To create a conformed volume lattice, the 4 untrimmed envelope surfaces are needed with their uv direction aligned same way as the following diagram
+<p align="center">
+  <img src="imgs/surface.JPG" width=800>
+</p>
 
-The surface json file need to be structured in following manner
+After surface prepared, a grid of points need to be exported from each surfaces and written into a single json file. These points are used to rebuild the surfaces on server.
+<p align="center">
+  <img src="imgs/surfaceGrid.png" width=500>
+</p>
+
+The json file should be structured in following manner
 ```python
 [
+  # point grid for top surface
   [
-    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row 3d points in direction 1
-    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
-    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
-    #[[...],[...]....[...]].....
-  ], #top surface
-  [...], #bottom surface
-  [...], #rail 1 surface
-  [...], #rail 2 surface
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row of 3d points in direction u
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # 2nd row of 3d points in direction u
+    # [[...],[...]....[...]],..... # number of rows equals to number of points in direction v
+  ], 
+  # point grid for bottom surface
+  [
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row of 3d points in direction u
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # 2nd row of 3d points in direction u
+    # [[...],[...]....[...]],..... # number of rows equals to number of points in direction v
+  ], 
+  # point grid for side01 surface
+  [
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row of 3d points in direction u
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # 2nd row of 3d points in direction u
+    # [[...],[...]....[...]],..... # number of rows equals to number of points in direction v
+  ],
+  # point grid for side02 surface
+  [
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row of 3d points in direction u
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # 2nd row of 3d points in direction u
+    # [[...],[...]....[...]],..... # number of rows equals to number of points in direction v
+  ], 
 ]
 ```
 
@@ -83,7 +106,7 @@ Example output:
 
 * <a href='https://francisbitontistudio.github.io/shoemaster_example/grid.html'>live demo</a><br>
 <p align="center">
-  <img src="imgs/grid.JPG" width=8000>
+  <img src="imgs/grid.JPG" width=1000>
 </p>
 
 ### 3. Create Lattice Unit 
@@ -110,7 +133,7 @@ Example output:
 ```
 * <a href='https://francisbitontistudio.github.io/shoemaster_example/unit.html'>live demo</a><br>
 <p align="center">
-  <img src="imgs/unit.JPG" width=8000>
+  <img src="imgs/unit.JPG" width=1000>
 </p>
 
 ### 4. Generate Lattice
@@ -133,7 +156,7 @@ Example output:
 ```
 * <a href='https://francisbitontistudio.github.io/shoemaster_example/lattice.html'>live demo</a><br>
 <p align="center">
-  <img src="imgs/lattice.JPG" width=8000>
+  <img src="imgs/lattice.JPG" width=1000>
 </p>
 
 ### More to come: 
