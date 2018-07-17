@@ -7,6 +7,8 @@ The Conformal Lattice example requires few API calls to be accomplished.
 [DIAGRAM HERE OF HOW TO PREPARE THE SURFACE]
 
 
+
+
 The prepared json file can be uploaded through http post request to the endpoint:
 https://studiobitonti.appspot.com/storage/upload
 
