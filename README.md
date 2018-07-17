@@ -2,18 +2,54 @@
 
 The Conformal Lattice example requires few API calls to be accomplished.
 
+### 0. File Transfer
+
+<b>Upload:</b>
+
+Provided with API key(temporarily not required now) , user files can be uploaded to GENYSIS server through http post request to endpoint
+
+https://studiobitonti.appspot.com/storage/upload
+
+Or using provided uploader example:
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/storage.html'>Uploader</a><br>
+
+Please note the uploading will automatically rewrite files with same names
+
+<b>Download:</b>
+
+Any uploaded or generated files can be downloaded from endpoint
+
+https://studiobitonti.appspot.com/storage/download  with parameter {name:YOUR_FILE_NAME}
+
+
+example:
+https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
+
 ### 1. Export Surface Grid
 
 [DIAGRAM HERE OF HOW TO PREPARE THE SURFACE]
 
-
+The surface json file need to be structured in following manner
+```python
+[
+  [
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]], # row 3d points in direction 1
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]],
+    #[[...],[...]....[...]].....
+  ], #top surface
+  [...], #bottom surface
+  [...], #rail 1 surface
+  [...], #rail 2 surface
+]
+```
 
 
 The prepared json file can be uploaded through http post request to the endpoint:
 https://studiobitonti.appspot.com/storage/upload
 
 Or using provided uploader example:
-* <a href='https://francisbitontistudio.github.io/shoemaster_example/storage.html'>Upload</a><br>
+* <a href='https://francisbitontistudio.github.io/shoemaster_example/storage.html'>Uploader</a><br>
 
 ### 2. Create Conformal Grid
 
