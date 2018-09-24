@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Meshing</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            margin: 0;
+            overflow: hidden;
+
+        }
+    </style>
+
+</head>
+<body>
+
+
+
+<script src="visualizer.min.js"></script>
+
+<script>
+
+    // var url = '/'
+    var url = 'https://studiobitonti.appspot.com/'
+
+    var app = new visualizer({
+
+        background: 0xffffff,
+        defaultEnvironment: 2,
+        GUI:true
+
+    
+    });
+
+    var line_mesh
+
+    var meshingParam = {
+
+        resolution: 256,
+        memberThickness: 1.0,
+        lines: 'lattice_example.obj'
+
+    }
+
+
+    var meshingUI = app.gui.addFolder('meshing');
+    meshingUI.open();
+
+    var meshing = false
+
+    meshingUI.add(meshingParam,'lines').listen();
+    meshingUI.add(meshingParam,'resolution');
+    meshingUI.add(meshingParam,'memberThickness');
+    meshingUI.add({run: function () {
+
+        if(meshing) {
+
+            alert('Still meshing...')
+            return
+
+        }
+        
+        
+        if(meshingParam.resolution > 800){
+        
+            alert('The resolution is probably too high, please make it less than 800')
+            return
+        
+        }
+
+        meshing = true
+
+        console.log('input',meshingParam)
+
+
+        $.get(url+'marchingCube',meshingParam,function (data) {
+
+            console.log('output',data)
+
+            for(var i=0; i<data.length; i++){
+
+                data[i] = 'http://studiobitonti.appspot.com/storage/download?name='+data[i]
+                // window.open(data[i])
+            }
+
+            app.saveAs(JSON.stringify(data),'download.txt')
+
+            meshing = false
+
+
+
+        }).fail(function (err) {
+            alert(err.statusText)
+            meshing = false
+            console.log(err)
+        })
+
+        alert('Running, please wait...')
+
+    }},'run');
+
+
+    app.run();
+
+
+</script>
+
+</body>
+</html>
