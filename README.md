@@ -164,8 +164,24 @@ Example output:
 The output can be downloaded here:
 https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
 
-### More to come: 
+### 5.Meshing
 
-4. Blended lattice
+### <a href='https://francisbitontistudio.github.io/shoemaster_example/meshing.html'>Live demo</a><br>
 
-5. Meshing
+Choose desired resolution and member thickness (Radius). Click 'Run' to start computing. 
+It could take 1 or 2 mins for very large files. After finished, a txt file with downloading URLs will be returned.
+It is also possible to mesh previous uploaded lines obj files by specifying the field 'lines'
+
+<p align="center">
+  <img src="img/run.JPG" width=800>
+</p>
+
+
+### 3. Check result in other CAD softwares
+
+The result stl files can be viewed in other softwares, due to the fact meshing result file could often be very large,
+thus in-browser visualization of the file is purposely disabled in this case. 
+
+<p align="center">
+  <img src="img/stl.JPG" width=800>
+</p>
