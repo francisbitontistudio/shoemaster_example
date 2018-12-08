@@ -48,7 +48,8 @@
             cBendIn: 0.0,
             connectPt:0.0,
             keepDup: false,
-            filename: 'unit_example.obj'
+            filename: 'unit_example.obj',
+            t: 'dev'
 
         },
 
@@ -62,13 +63,13 @@
             console.log('input',setting.parameter)
 
             //using jQuery to serialize input parameter and make http get request to api
-            $.get('https://studiobitonti.appspot.com/latticeUnit',setting.parameter,function (data) {
+            $.post('https://studiobitonti.appspot.com/latticeUnit',setting.parameter,function (data) {
 
                 // print output in browser console
                 console.log('output',data)
 
                 // download the output obj lines
-                $.get('https://studiobitonti.appspot.com/storage/download',{name:data[0]},function (obj) {
+                $.get('https://studiobitonti.appspot.com/storage/download',{name:data[0],t:setting.parameter.t},function (obj) {
 
                     // load obj lines into the visualizer
                     if(setting.lattice_unit) app.scene.remove(setting.lattice_unit)
@@ -99,6 +100,7 @@
     UI.add(setting.parameter,'cBendIn',0,1)
     UI.add(setting.parameter,'connectPt',0,1)
     UI.add(setting.parameter,'filename')
+    UI.add(setting.parameter,'t').name('token')
     UI.add(setting,'call_API')
 
 

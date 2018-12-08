@@ -39,6 +39,7 @@
             boxes: 'grid_example.json',
             component: 'unit_example.obj',
             filename:'lattice_example.obj',
+            t: 'dev',
             EPSILON: 0.1
 
         },
@@ -53,13 +54,13 @@
             console.log('input', setting.parameter)
 
             //using jQuery to serialize input parameter and make http get request to api
-            $.get('https://studiobitonti.appspot.com/boxMorph', setting.parameter, function (data) {
+            $.post('https://studiobitonti.appspot.com/boxMorph', setting.parameter, function (data) {
 
                 // print output in browser console
                 console.log('output', data)
                 alert('Computing finished, start to load lattice')
                 // download the output obj lines
-                $.get('https://studiobitonti.appspot.com/storage/download', {name: data[0]}, function (obj) {
+                $.get('https://studiobitonti.appspot.com/storage/download', {name: data[0],t: setting.parameter.t}, function (obj) {
 
                     // load obj lines into the visualizer
                     if (setting.lattice) app.scene.remove(setting.lattice)

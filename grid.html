@@ -42,7 +42,8 @@
             surfaces: 'sole_example.json',
             filename:'grid_example.json',
             directOutput: true,
-            unitize: false
+            unitize: false,
+            t: 'dev'
 
         },
 
@@ -56,7 +57,7 @@
             console.log('input',setting.parameter)
 
             //using jQuery to serialize input parameter and make http get request to api
-            $.get('https://studiobitonti.appspot.com/conformalGrid',setting.parameter,function (data) {
+            $.post('https://studiobitonti.appspot.com/conformalGrid',setting.parameter,function (data) {
 
                 // print output in browser console
                 console.log('output',data)
@@ -85,6 +86,7 @@
     UI.add(setting.parameter,'w').step(1);
     UI.add(setting.parameter,'unitize')
     UI.add(setting.parameter,'filename')
+    UI.add(setting.parameter,'t').name('token')
     UI.add(setting,'call_API')
 
 

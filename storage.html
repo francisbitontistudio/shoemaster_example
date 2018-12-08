@@ -10,8 +10,8 @@
 <!--create html form for uploading files-->
 <h2>Upload</h2>
 <form id="upload" action="https://studiobitonti.appspot.com/storage/upload">
-    <input id="file1" type="file" name="file1"><br>
-    <input id="overwite" type="checkbox" checked="checked">over-write file name<br>
+    File: <input id="file1" type="file" name="file1"><br>
+    Token: <input id="t" type="text" name="t" value="dev"><br>
     <input type="submit" value="Upload"><br>
     <div id="Response"></div>
 </form><br>
@@ -31,16 +31,6 @@
 
         // get the api end point
         var apiEndPoint = upload.attr('action');
-
-
-        // overwrite the file name if the overwrite box is checked. otherwise, a unique time stamp will be appended to file name
-        var filename = $('#file1').val().split('\\').pop()
-
-        if($('#overwite').is(":checked") && filename){
-
-            apiEndPoint += '?filename=' + filename
-
-        }
 
 
         // use jQuery to make ajax request to post files to api
