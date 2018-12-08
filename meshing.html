@@ -22,7 +22,6 @@
 
 <script>
 
-    // var url = '/'
     var url = 'https://studiobitonti.appspot.com/'
 
     var app = new visualizer({
@@ -40,7 +39,10 @@
 
         resolution: 300,
         memberThickness: 1.0,
-        lines: 'lattice_example.obj'
+        lines: 'lattice_example.obj',
+        filename: 'meshing_example.stl',
+        t: 'dev',
+        preview: true
 
     }
 
@@ -53,6 +55,9 @@
     meshingUI.add(meshingParam,'lines').listen();
     meshingUI.add(meshingParam,'resolution');
     meshingUI.add(meshingParam,'memberThickness');
+    meshingUI.add(meshingParam,'filename');
+    meshingUI.add(meshingParam,'preview');
+    meshingUI.add(meshingParam,'t').name('token');
     meshingUI.add({run: function () {
 
         if(meshing) {
@@ -61,13 +66,13 @@
             return
 
         }
-        
-        
+
+
         if(meshingParam.resolution > 800){
-        
+
             alert('The resolution is probably too high, please make it less than 800')
             return
-        
+
         }
 
         meshing = true
@@ -75,17 +80,33 @@
         console.log('input',meshingParam)
 
 
-        $.get(url+'marchingCube',meshingParam,function (data) {
+        $.post(url+'marchingCube',meshingParam,function (data) {
 
-            console.log('output',data)
+            if(meshingParam.preview){
 
-            for(var i=0; i<data.length; i++){
+                new THREE.STLLoader().load('https://studiobitonti.appspot.com/storage/download?t=dev&name='+data[0],function (geometry) {
 
-                data[i] = 'http://studiobitonti.appspot.com/storage/download?name='+data[i]
-                // window.open(data[i])
+                    geometry.computeVertexNormals()
+                    let mesh = new THREE.Mesh(geometry,new THREE.MeshPhongMaterial({side:THREE.DoubleSide,color: 0x8e8e8e}))
+                    app.scene.add(mesh)
+
+                })
+
+            }else{
+
+                console.log('output',data)
+
+                for(var i=0; i<data.length; i++){
+
+                    data[i] = 'https://studiobitonti.appspot.com/storage/download?t=dev&name='+data[i]
+                    // window.open(data[i])
+                }
+
+                app.saveAs(JSON.stringify(data),'download.txt')
+
+
             }
 
-            app.saveAs(JSON.stringify(data),'download.txt')
 
             meshing = false
 
