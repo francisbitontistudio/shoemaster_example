@@ -6,7 +6,7 @@ The Conformal Lattice example requires few API calls to be accomplished.
 
 <b>Upload:</b>
 
-Provided with API key(temporarily not required now) , user files can be uploaded to GENYSIS server through http post request to endpoint
+Provided with API key, user files can be uploaded to GENYSIS server through http post request to endpoint
 
 https://studiobitonti.appspot.com/storage/upload
 
@@ -18,11 +18,11 @@ Or using provided uploader example:
 
 Any uploaded or generated files can be downloaded from endpoint
 
-https://studiobitonti.appspot.com/storage/download  with parameter {name:YOUR_FILE_NAME}
+https://studiobitonti.appspot.com/storage/download  with parameter {name:YOUR_FILE_NAME,t:'dev'}
 
 
 example:
-https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
+https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj&t=dev
 
 ### 1. Export Surface Grid
 
@@ -76,7 +76,7 @@ Or using provided uploader example:
 ### 2. Create Conformal Grid
 
 The next step is rebuilding surfaces on server and use them to create a conformal volume grid.
-Use the http get to call API endpoint: https://studiobitonti.appspot.com/conformalGrid 
+Use the http post to call API endpoint: https://studiobitonti.appspot.com/conformalGrid 
 
 Example input:
 ```python
@@ -87,7 +87,8 @@ Example input:
   "surfaces": "sole_example.json",  # input file name saved on server representing the surfaces
   "filename": "grid_example.json",  # output file name to be saved on server
   "directOutput": true, # if true the content of output file will be returned by the API call, otherwise, the location of the file will be returned instead.
-  "unitize": false # whether to reparametricise the surface division
+  "unitize": false # whether to reparametricise the surface division,
+  "t":"dev" # test token
 }
 ```
 
@@ -113,7 +114,7 @@ Example output:
 
 ### 3. Create Lattice Unit 
 
-Use http get with API endpoint: https://studiobitonti.appspot.com/latticeUnit to generate a parametrically described lattice unit
+Use http post with API endpoint: https://studiobitonti.appspot.com/latticeUnit to generate a parametrically described lattice unit
 
 Example input:
 ```python
@@ -125,7 +126,8 @@ Example input:
   "cBendIn": 0.0, # the bend in percentage for each internal edges as float from 0 to 0.5
   "connectPt": 0.0, # the position for additional connection edges as float from 0 to 0.5
   "keepDup": false, # whether to keep duplicated edges, which is enssential for blended lattice, which requres multiple different units with same number of edges 
-  "filename": "unit_example.obj", # output file name to be saved on server
+  "filename": "unit_example.obj", # output file name to be saved on server,
+  "t":"dev" # test token
 }
 ```
 The output will be stored on server using specified file name 
@@ -148,7 +150,8 @@ Example input:
   "boxes": "grid_example.json", # name of grid file saved on server
   "component": "unit_example.obj", # name of lattice unit file saved on server
   "filename": "lattice_example.obj",
-  "EPSILON": 0.01
+  "EPSILON": 0.01,
+  "t":"dev" # test token
 }
 ```
 
@@ -162,7 +165,7 @@ Example output:
 </p>
 
 The output can be downloaded here:
-https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj
+https://studiobitonti.appspot.com/storage/download?name=lattice_example.obj&t=dev
 
 ### 5.Meshing
 
