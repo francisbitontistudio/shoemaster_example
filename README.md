@@ -179,7 +179,6 @@ It is also possible to mesh previous uploaded lines obj files by specifying the 
   <img src="imgs/run.JPG" width=800>
 </p>
 
-
 <b>Check result in other CAD softwares:</b>
 
 The result stl files can be viewed in other softwares, due to the fact meshing result file could often be very large,
@@ -188,3 +187,9 @@ thus in-browser visualization of the file is purposely disabled in this case.
 <p align="center">
   <img src="imgs/stl.JPG" width=800>
 </p>
+
+<strong>* If the preview flag is checked, a low-poly preview version of mesh will be returned instead </strong>
+<p align="center">
+  <img src="imgs/preview.JPG" width=800>
+</p>
+
