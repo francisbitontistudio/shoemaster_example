@@ -23,6 +23,7 @@
 <script>
 
     var url = 'https://studiobitonti.appspot.com/'
+    // var url = 'http://localhost:3000/'
 
     var app = new visualizer({
 
@@ -77,12 +78,16 @@
 
         meshing = true
 
+        var params = JSON.parse(JSON.stringify(meshingParam));
+
+        if(!params.preview) delete params.preview
+
         console.log('input',meshingParam)
 
 
-        $.post(url+'marchingCube',meshingParam,function (data) {
+        $.post(url+'marchingCube',params,function (data) {
 
-            if(meshingParam.preview){
+            if(params.preview){
 
                 new THREE.STLLoader().load('https://studiobitonti.appspot.com/storage/download?t=dev&name='+data[0],function (geometry) {
 
